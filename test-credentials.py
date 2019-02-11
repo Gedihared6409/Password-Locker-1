@@ -9,4 +9,4 @@ class TestCredential(unittest.TestCase):
         """
         set up method to run before each test cases
         """
-        self.new_credential = Credential("123456","twitter","nay","12345")
+        self.new_credential = Credential("0788312907jk","twitter","kayitesijackie","0788312907jk")
