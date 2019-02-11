@@ -15,3 +15,9 @@ def create_credentials(view_password,account,login_name,pass_word):
     """
     new_credential = Credential(view_password,account,login_name,pass_word)
     return new_credential
+
+def save_user_account(user):
+    """
+    Function to save user account
+    """
+    user.save_user()
