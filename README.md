@@ -9,7 +9,7 @@ This is a terminal based python program that helps users to manage their passwor
 To start using this project use the following commands:
 
 * `git clone https://github.com/kayitesijackie/Password-Locker.git`
-* `cd Password-locker`
+* `cd Password-Locker`
 
 To run this program
 * run this command lines in your terminal:
