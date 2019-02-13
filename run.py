@@ -30,6 +30,13 @@ def save_credentials(credential):
     """
     credential.save_credential()
 
+def del_credential(account):
+    '''
+    Function to delete a credential
+    '''
+    Credential.credential_list.remove()
+
+
 def check_existing_users(characters):
     """
     Function that checks if a user exists with those characters and retuen a boolean
@@ -46,11 +53,11 @@ def main():
     print("Hello! Welcome to the Password Locker. What is your name?")
     u_name = input()
     print("\n")
-    print(f"Hello {u_name}.what would you like to do?")
+    print(f"Hello {u_name}!! What would you like to do?")
     while True:
         print("\nUse these short codes below:")
         print("-" * 30)
-        print("\n ca - create an account, cc - create credentials, gp - generate password, cp - create own password, ex - exit password locker, dc - display credentials")
+        print("\n ca - create an account, cc - create credentials, gp - generate password, cp - create own password, dc - display credentials, rc - delete credentials, ex - exit password locker")
         short_code = input().lower()
 
         if short_code == 'ca':
@@ -75,7 +82,7 @@ def main():
             print("-"*20)
             print("\nUsername?")
             print("-" * 10)
-            username_input = input()
+            user_name = input()
             print("\nPassword?")
             print("-"*10)
             user_password_input = input()
@@ -83,14 +90,14 @@ def main():
             if check_existing_users(user_password_input):
                 print("\nWelcome back!")
                 print("New Credential")
-                print("-" *10)
+                print("-" *15)
 
                 print("\nWhich account do the credentials belong to?")
                 print("-"*40)
                 account = input()
 
                 print(f"\nWhat's your login name for the {account} account?")
-                print("-"*40)
+                print("-"*45)
                 login_name = input()
 
                 print("\nChoose:")
@@ -113,10 +120,10 @@ def main():
             else:
                 print("Wrong password or username. Please Try again.\n Username?")
                 print("-"*20)
-                username_input = input()
+                user_name = input()
                 print("\nPassword?")
                 print("-"*20)
-                password_input = input()
+                pass_word = input()
                 if check_existing_users(user_password_input):
                     print("\nWelcome back!")
                 else:
@@ -131,6 +138,19 @@ def main():
                     print(f"\nAccount: {credential.account}\nLogin Name: {credential.login}\nAccount Password: {credential.password}")
             else:
                 print("\n You don't seem to have any credentials saved yet")
+
+        elif short_code == 'rc':
+            print("Enter the account name you want to delete")
+
+            del_account = input()
+            if check_existing_users(del_account):
+                search_del_credential = save_credentials(del_account)
+                del_credential(search_del_credential)
+                         
+                print(f"Deleted credentials of {del_account}")
+                        
+            else:
+                print("That credential does not exist")
 
         elif short_code == 'ex':
             print("-"*50)
