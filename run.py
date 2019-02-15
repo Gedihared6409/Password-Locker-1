@@ -11,31 +11,11 @@ def create_user_account(user_name,pass_word):
     new_user = User(user_name,pass_word)
     return new_user
 
-def create_credentials(view_password,account,login_name,pass_word):
-    """
-    Function to create a new credential
-    """
-    new_credential = Credential(view_password,account,login_name,pass_word)
-    return new_credential
-
 def save_user_account(user):
     """
     Function to save user account
     """
     user.save_user()
-
-def save_credentials(credential):
-    """
-    Function to save credentials
-    """
-    credential.save_credential()
-
-def del_credential(account):
-    '''
-    Function to delete a credential
-    '''
-    Credential.credential_list.remove()
-
 
 def check_existing_users(characters):
     """
@@ -43,11 +23,43 @@ def check_existing_users(characters):
     """
     return User.user_exists(characters)
 
+def create_credentials(view_password,account,login_name,pass_word):
+    """
+    Function to create a new credential
+    """
+    new_credential = Credential(view_password,account,login_name,pass_word)
+    return new_credential
+
+def save_credentials(credential):
+    """
+    Function to save credentials
+    """
+    credential.save_credential()
+
+def del_credential(credential):
+    '''
+    Function to delete a credential
+    '''
+    credential.del_credential()
+
+def check_existing_credentials(account):
+    '''
+    Function that check if a credential exists with that acc_name and return a Boolean
+    '''
+    return Credential.credential_exist(account)
+
+def find_credential(account):
+    '''
+    Function that finds a credential by acc_name and returns the credential
+    '''
+    return Credential.find_by_account(account)
+
+
 def display_credentials():
-     """
-     Function that returns the credentials list
-     """
-     return Credential.display_credentials()
+    """
+    Function that returns the credentials list
+    """
+    return Credential.display_credentials()
 
 def main():
     print("Hello! Welcome to the Password Locker. What is your name?")
@@ -143,9 +155,8 @@ def main():
             print("Enter the account name you want to delete")
 
             del_account = input()
-            if check_existing_users(del_account):
-                search_del_credential = save_credentials(del_account)
-                del_credential(search_del_credential)
+            if check_existing_credentials(del_account):
+                del_credential(find_credential(del_account))
                          
                 print(f"Deleted credentials of {del_account}")
                         
